@@ -1,3 +1,5 @@
+import CalEmbed from "./cal-embed";
+
 export default function Home() {
   return (
     <>
@@ -34,7 +36,7 @@ function Nav() {
           href="#contact"
           className="bg-navy text-white text-sm px-5 py-2.5 rounded-lg hover:bg-navy-light transition-colors"
         >
-          Echanger 20 min
+          Prendre rendez-vous
         </a>
       </div>
     </nav>
@@ -65,7 +67,7 @@ function Hero() {
               href="#contact"
               className="inline-flex items-center justify-center bg-navy text-white px-8 py-4 rounded-lg text-base font-medium hover:bg-navy-light transition-colors"
             >
-              Reservez un echange de 20 minutes
+              Reservez votre creneau
             </a>
             <a
               href="#resultats"
@@ -457,25 +459,19 @@ function About() {
 function CTA() {
   return (
     <section id="contact" className="py-20 bg-gray-warm">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <h2 className="font-serif text-3xl md:text-4xl text-navy mb-6">
-          Echangeons 20 minutes.
-          <br />
-          <span className="text-gold">Sans engagement, sans jargon.</span>
-        </h2>
-        <p className="text-charcoal/60 text-lg mb-10 max-w-xl mx-auto">
-          Vous m&apos;expliquez votre situation, je vous dis honnêtement si je peux vous aider
-          et comment. Si ce n&apos;est pas le bon moment, pas de probleme.
-        </p>
-        <a
-          href="mailto:aserignace@gmail.com?subject=Echange%2020%20minutes%20-%20CGP&body=Bonjour%20Aser-Joseph%2C%0A%0AJe%20suis%20CGP%20et%20j%27aimerais%20echanger%20avec%20vous%20sur%20l%27automatisation%20de%20mes%20operations.%0A%0AMes%20principales%20problematiques%20sont%20%3A%0A-%20%0A%0ACordialement"
-          className="inline-flex items-center justify-center bg-gold text-navy px-10 py-4 rounded-lg text-lg font-semibold hover:bg-gold-light transition-colors"
-        >
-          Reservez votre echange gratuit
-        </a>
-        <p className="text-charcoal/40 text-sm mt-6">
-          Ou ecrivez-moi directement : aserignace@gmail.com
-        </p>
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="text-center mb-10">
+          <h2 className="font-serif text-3xl md:text-4xl text-navy mb-6">
+            Echangeons 30 minutes.
+            <br />
+            <span className="text-gold">Sans engagement, sans jargon.</span>
+          </h2>
+          <p className="text-charcoal/60 text-lg max-w-xl mx-auto">
+            Choisissez le creneau qui vous convient. Vous m&apos;expliquez votre situation,
+            je vous dis honnêtement si je peux vous aider.
+          </p>
+        </div>
+        <CalEmbed />
       </div>
     </section>
   );

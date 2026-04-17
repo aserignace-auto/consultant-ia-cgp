@@ -151,8 +151,9 @@ ${results.pasCrm ? `
     });
 
     return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("Email send error:", err);
-    return NextResponse.json({ ok: false, error: "Email failed" }, { status: 500 });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("Email send error:", message);
+    return NextResponse.json({ ok: false, error: message }, { status: 500 });
   }
 }

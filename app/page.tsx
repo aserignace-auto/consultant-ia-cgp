@@ -64,16 +64,16 @@ function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
+              href="/calculatrice"
+              className="inline-flex items-center justify-center bg-gold text-navy px-8 py-4 rounded-lg text-base font-semibold hover:bg-gold-light transition-colors"
+            >
+              Calculez ce que vous perdez en admin
+            </a>
+            <a
               href="#contact"
               className="inline-flex items-center justify-center bg-navy text-white px-8 py-4 rounded-lg text-base font-medium hover:bg-navy-light transition-colors"
             >
               Reservez votre creneau
-            </a>
-            <a
-              href="#resultats"
-              className="inline-flex items-center justify-center border-2 border-navy/15 text-navy px-8 py-4 rounded-lg text-base font-medium hover:border-navy/30 transition-colors"
-            >
-              Voir les resultats
             </a>
           </div>
         </div>

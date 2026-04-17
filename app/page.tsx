@@ -383,7 +383,8 @@ function About() {
                 On a conçu et déployé des systèmes d&apos;automatisation complets pour
                 plusieurs entreprises : CRM, prospection automatisée, agents IA vocaux,
                 qualification, nurturing, suivi client. Des milliers de prospects générés
-                et des activités qui tournent en autonomie complète.
+                et des milliers d&apos;heures économisées chaque mois pour les entreprises
+                qu&apos;on a accompagnées.
               </p>
               <p>
                 On a décidé de se spécialiser exclusivement sur les CGP parce que

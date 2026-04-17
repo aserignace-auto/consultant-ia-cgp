@@ -53,12 +53,12 @@ function Hero() {
             Spécialiste CGP exclusivement
           </div>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-navy mb-6">
-            Vous passez trop de temps a{" "}
-            <span className="text-gold">administrer</span> et pas assez a{" "}
+            Vous passez trop de temps à{" "}
+            <span className="text-gold">administrer</span> et pas assez à{" "}
             <span className="text-gold">conseiller.</span>
           </h1>
           <p className="text-lg md:text-xl text-charcoal/70 leading-relaxed mb-10 max-w-2xl">
-            J&apos;automatise les opérations des Conseillers en Gestion de Patrimoine pour que
+            On automatise les opérations des Conseillers en Gestion de Patrimoine pour que
             chaque heure que vous récupérez soit une heure dédiée à vos clients.
             Pas des outils. Des résultats mesurables.
           </p>
@@ -91,19 +91,19 @@ function Problem() {
 
   const pains = [
     {
-      title: "L'administratif vous étouffe",
-      desc: "Rapports d'adéquation, KYC, conformité AMF, lettres de mission, relances... Vous passez 40 à 50% de votre temps sur des tâches qui ne rapportent rien à vos clients.",
+      title: "L\u2019administratif vous étouffe",
+      desc: "Rapports d\u2019adéquation, KYC, conformité AMF, lettres de mission, relances... Vous passez 40 à 50% de votre temps sur des tâches qui ne rapportent rien à vos clients.",
     },
     {
       title: "Votre prospection est au point mort",
-      desc: "Vous dépendez du bouche à oreille. Pas de système pour générer des rendez-vous qualifiés régulièrement. Et quand un mois creux arrive, c'est la panique.",
+      desc: "Vous dépendez du bouche à oreille. Pas de système pour générer des rendez-vous qualifiés régulièrement. Et quand un mois creux arrive, c\u2019est la panique.",
     },
     {
       title: "Les outils se multiplient sans résultat",
-      desc: "Un CRM ici, un tableur là, un logiciel de conformité ailleurs. Rien ne communique, tout est en double, et vous perdez du temps au lieu d'en gagner.",
+      desc: "Un CRM ici, un tableur là, un logiciel de conformité ailleurs. Rien ne communique, tout est en double, et vous perdez du temps au lieu d\u2019en gagner.",
     },
     {
-      title: "La réglementation s'alourdit",
+      title: "La réglementation s\u2019alourdit",
       desc: "DDA, MiFID II, LCB-FT, RGPD, ACPR... Les obligations se multiplient. Chaque nouvelle règle ajoute du travail administratif sans ajouter de valeur client.",
     },
   ];
@@ -149,17 +149,17 @@ function Solution() {
     {
       icon: "01",
       title: "Audit opérationnel",
-      desc: "Je cartographie vos processus actuels, identifie les goulots d'étranglement et quantifie le temps perdu. Pas de théorie : des chiffres précis sur votre situation.",
+      desc: "On cartographie vos processus actuels, on identifie les goulots d\u2019étranglement et on quantifie le temps perdu. Pas de théorie : des chiffres précis sur votre situation.",
     },
     {
       icon: "02",
       title: "Automatisation sur mesure",
-      desc: "Je construis des systèmes qui font le travail à votre place : génération de rapports, KYC automatisé, prospection qualifiée, relances clients, suivi réglementaire.",
+      desc: "On construit des systèmes qui font le travail à votre place : génération de rapports, KYC automatisé, prospection qualifiée, relances clients, suivi réglementaire.",
     },
     {
       icon: "03",
-      title: "Mesure et optimisation",
-      desc: "Chaque automatisation est mesurée : heures économisées, rendez-vous générés, CA additionnel. Si un système ne produit pas de résultats, je le change.",
+      title: "Suivi et optimisation",
+      desc: "Chaque système déployé chez vous est mesuré et optimisé en continu. Heures économisées, rendez-vous générés, CA additionnel : on suit tout, vous voyez tout.",
     },
   ];
 
@@ -168,12 +168,12 @@ function Solution() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-serif text-3xl md:text-4xl text-navy mb-4">
-            Je ne déploie pas des outils.
+            On ne déploie pas des outils.
             <br />
-            <span className="text-gold">Je construis le système qui fait tourner votre cabinet.</span>
+            <span className="text-gold">On construit le système qui fait tourner votre cabinet.</span>
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            Mon approche est simple : je pars de votre réalité business, pas de la technologie.
+            Notre approche est simple : on part de votre réalité business, pas de la technologie.
             Chaque heure d&apos;administratif que vous récupérez est une heure de plus
             avec vos clients.
           </p>
@@ -192,10 +192,10 @@ function Solution() {
         </div>
 
         <div className="mt-16 bg-navy rounded-2xl p-8 md:p-12 text-center">
-          <p className="font-serif text-2xl md:text-3xl text-white mb-4">
-            &laquo; Ce qu&apos;un client achète, ce n&apos;est pas des automatisations.
+          <p className="font-serif text-2xl md:text-3xl text-white">
+            Vos clients ne vous paient pas pour remplir des formulaires.
             <br />
-            <span className="text-gold">C&apos;est des résultats mesurables. &raquo;</span>
+            <span className="text-gold">Ils vous paient pour les conseiller.</span>
           </p>
         </div>
       </div>
@@ -207,8 +207,7 @@ function Proof() {
   const metrics = [
     { value: "3 000+", label: "Prospects générés" },
     { value: "40+", label: "Processus automatisés" },
-    { value: "5 000 €/mois", label: "Contrat garanti + 1% CA" },
-    { value: "0", label: "Intervention manuelle au quotidien" },
+    { value: "100%", label: "Autonome après déploiement" },
   ];
 
   return (
@@ -216,15 +215,15 @@ function Proof() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-serif text-3xl md:text-4xl text-navy mb-4">
-            Ce que j&apos;ai construit pour Leads Machine
+            Des résultats concrets, pas des promesses
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            Avant de vous parler de ce que je peux faire pour votre cabinet,
-            voici ce que j&apos;ai déjà prouvé.
+            On a déjà déployé ces systèmes dans le secteur immobilier.
+            Voici ce que ça donne.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-3 gap-6 mb-12">
           {metrics.map((m) => (
             <div key={m.label} className="bg-white rounded-xl p-6 text-center border border-gray-border">
               <div className="text-2xl md:text-3xl font-serif font-bold text-navy mb-2">{m.value}</div>
@@ -233,96 +232,44 @@ function Proof() {
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl border border-gray-border p-8 md:p-12">
+        <div className="bg-white rounded-2xl border border-gray-border p-8 md:p-12 mb-12">
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
               <span className="text-gold font-serif font-bold text-xl">MR</span>
             </div>
             <div>
               <p className="text-charcoal/80 text-lg leading-relaxed italic mb-6">
-                &laquo; Ignace a construit l&apos;intégralité de notre système : site web, CRM,
-                40+ automatisations, agent vocal IA, scraping de leads, setter IA Instagram.
-                Résultat : plus de 3 000 prospects générés, je ne fais plus qu&apos;à closer.
-                Il comprend le business avant la technique, et il mesure tout. &raquo;
+                &laquo; Ils ont automatisé l&apos;ensemble de nos opérations : CRM, prospection,
+                qualification, relances, suivi. Aujourd&apos;hui tout tourne, je me concentre
+                uniquement sur le closing. Plus de 3 000 prospects générés sans intervention
+                manuelle. &raquo;
               </p>
               <div>
-                <p className="font-semibold text-navy">Maxime Rumpler</p>
-                <p className="text-charcoal/50 text-sm">Fondateur, Leads Machine — Immobilier</p>
+                <p className="font-semibold text-navy">Maxime R.</p>
+                <p className="text-charcoal/50 text-sm">Dirigeant — secteur immobilier</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl border border-gray-border p-8">
-            <h3 className="font-semibold text-navy mb-4">Ce que j&apos;ai automatisé</h3>
-            <ul className="space-y-3 text-charcoal/60">
-              <li className="flex items-start gap-3">
+        <div className="bg-white rounded-xl border border-gray-border p-8">
+          <h3 className="font-semibold text-navy mb-6 text-center">Ce que ça change concrètement pour un CGP</h3>
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-4">
+            {[
+              "15 à 20 heures d\u2019administratif récupérées par semaine",
+              "Rendez-vous qualifiés générés automatiquement chaque mois",
+              "Conformité AMF, ACPR, RGPD gérée sans effort",
+              "Suivi client et relances en pilote automatique",
+              "Plus de temps pour conseiller, moins pour administrer",
+              "Un système qui tourne pendant que vous êtes en rendez-vous",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3">
                 <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
                   <span className="w-2 h-2 bg-gold rounded-full" />
                 </span>
-                Génération de leads qualifiés via scraping intelligent
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                Agent vocal IA pour la qualification téléphonique
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                Setter IA Instagram pour l&apos;engagement automatique
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                CRM complet avec 40+ workflows automatisés
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                Campagnes email avec nurturing automatisé
-              </li>
-            </ul>
-          </div>
-          <div className="bg-white rounded-xl border border-gray-border p-8">
-            <h3 className="font-semibold text-navy mb-4">Ce que ça change pour un CGP</h3>
-            <ul className="space-y-3 text-charcoal/60">
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                15 à 20 heures d&apos;administratif récupérées par semaine
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                Rendez-vous qualifiés générés automatiquement chaque mois
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                Conformité AMF, ACPR, RGPD gérée sans effort
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                Suivi client et relances en pilote automatique
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="w-5 h-5 bg-gold/10 rounded flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="w-2 h-2 bg-gold rounded-full" />
-                </span>
-                Un système qui tourne pendant que vous conseillez
-              </li>
-            </ul>
+                <span className="text-charcoal/60">{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -334,26 +281,26 @@ function Process() {
   const steps = [
     {
       step: "01",
-      title: "Échange de 20 minutes",
-      desc: "On fait connaissance. Vous m'expliquez votre situation, vos douleurs, vos objectifs. Je vous dis honnêtement si je peux vous aider et comment.",
+      title: "Échange de 30 minutes",
+      desc: "On fait connaissance. Vous nous expliquez votre situation, vos contraintes, vos objectifs. On vous dit honnêtement si on peut vous aider et comment.",
       time: "Gratuit, sans engagement",
     },
     {
       step: "02",
       title: "Audit opérationnel",
-      desc: "Je cartographie vos processus, identifie ce qui peut être automatisé, et chiffre le temps que vous allez récupérer. Vous recevez un rapport clair avec des priorités.",
+      desc: "On cartographie vos processus, on identifie ce qui peut être automatisé, et on chiffre le temps que vous allez récupérer. Vous recevez un rapport clair avec des priorités.",
       time: "1 à 2 semaines",
     },
     {
       step: "03",
-      title: "Construction du système",
-      desc: "Je construis vos automatisations une par une, en commençant par celles qui ont le plus d'impact. Vous validez chaque étape. Pas de boîte noire.",
+      title: "Déploiement du système",
+      desc: "On construit vos automatisations une par une, en commençant par celles qui ont le plus d\u2019impact. Vous validez chaque étape. Pas de boîte noire.",
       time: "2 à 6 semaines selon la complexité",
     },
     {
       step: "04",
-      title: "Mesure et ajustement",
-      desc: "On mesure ensemble les résultats : heures économisées, prospects générés, CA additionnel. Ce qui ne produit pas de resultats est ajusté ou remplacé.",
+      title: "Suivi et optimisation",
+      desc: "On mesure ensemble les résultats : heures économisées, prospects générés, CA additionnel. Chaque système est optimisé en continu pour maximiser votre retour.",
       time: "Suivi continu",
     },
   ];
@@ -408,34 +355,34 @@ function About() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">
-              Pourquoi je me suis spécialisé sur les CGP
+              Pourquoi on s&apos;est spécialisé sur les CGP
             </h2>
             <div className="space-y-4 text-white/70 leading-relaxed">
               <p>
-                Je suis Aser-Joseph Ignace. J&apos;ai construit le système complet de Leads Machine
-                de zéro : site web, CRM, 40+ automatisations, agent vocal IA, setter Instagram.
-                Résultat : plus de 3 000 prospects générés et un contrat à 5 000 euros par mois
-                plus 1% du chiffre d&apos;affaires.
+                On a conçu et déployé un système complet d&apos;acquisition et d&apos;automatisation
+                pour un cabinet immobilier : CRM, prospection automatisée, qualification par IA,
+                nurturing, suivi client. Résultat : plus de 3 000 prospects générés
+                et une activité qui tourne en autonomie complète.
               </p>
               <p>
-                J&apos;ai choisi de me spécialiser sur les CGP parce que c&apos;est un métier où
+                On a choisi de se spécialiser sur les CGP parce que c&apos;est un métier où
                 l&apos;IA et l&apos;automatisation peuvent changer la donne complètement.
                 Vous êtes des experts en patrimoine, pas en technologie.
-                Et vous ne devriez pas avoir à l&apos;etre.
+                Et vous ne devriez pas avoir à l&apos;être.
               </p>
               <p>
-                Ma différence : je pars toujours du business case avant de toucher à la
-                technique. Je construis moins et je mesure plus. Si une automatisation ne
-                produit pas de résultat mesurable, je la change.
+                Notre différence : on part toujours du business case avant de toucher à la
+                technique. On construit moins et on mesure plus. Chaque automatisation
+                déployée produit un résultat mesurable.
               </p>
             </div>
           </div>
           <div className="bg-white/5 rounded-2xl p-8 border border-white/10">
-            <h3 className="text-gold font-serif text-xl mb-6">Ce que je connais de votre métier</h3>
+            <h3 className="text-gold font-serif text-xl mb-6">Ce qu&apos;on connaît de votre métier</h3>
             <div className="space-y-4">
               {[
                 "Conformité AMF, ACPR, MiFID II, DDA",
-                "Parcours KYC et rapports d'adéquation",
+                "Parcours KYC et rapports d\u2019adéquation",
                 "Lettres de mission et bilans patrimoniaux",
                 "Obligations LCB-FT et RGPD",
                 "Gestion des DER et suivi réglementaire",
@@ -467,8 +414,8 @@ function CTA() {
             <span className="text-gold">Sans engagement, sans jargon.</span>
           </h2>
           <p className="text-charcoal/60 text-lg max-w-xl mx-auto">
-            Choisissez le créneau qui vous convient. Vous m&apos;expliquez votre situation,
-            je vous dis honnêtement si je peux vous aider.
+            Choisissez le créneau qui vous convient. Vous nous expliquez votre situation,
+            on vous dit honnêtement si on peut vous aider.
           </p>
         </div>
         <CalEmbed />
@@ -485,12 +432,12 @@ function Footer() {
           <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
             <span className="text-gold font-serif font-bold text-xs">IC</span>
           </div>
-          <span>Ignace Consulting — Consultant IA pour CGP</span>
+          <span>Ignace Consulting — Automatisation IA pour CGP</span>
         </div>
         <div className="flex items-center gap-6">
           <span>Conforme RGPD</span>
           <span>|</span>
-          <span>Vienne, France</span>
+          <span>France</span>
           <span>|</span>
           <span>2026</span>
         </div>

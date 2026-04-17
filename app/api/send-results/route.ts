@@ -5,12 +5,12 @@ export async function POST(req: NextRequest) {
   const { email, answers, results } = await req.json();
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp-relay.brevo.com",
     port: 587,
     secure: false,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: process.env.BREVO_SMTP_LOGIN,
+      pass: process.env.BREVO_SMTP_KEY,
     },
   });
 
@@ -50,20 +50,28 @@ export async function POST(req: NextRequest) {
       <td align="right" style="font-weight:bold;color:#1B2A4A;">${answers.nbClients}</td>
     </tr>
     <tr style="border-bottom:1px solid #E8E6E1;">
-      <td style="color:#666;">Heures conformite / semaine</td>
-      <td align="right" style="font-weight:bold;color:#1B2A4A;">${answers.heuresConformite}h</td>
+      <td style="color:#666;">CA annuel</td>
+      <td align="right" style="font-weight:bold;color:#1B2A4A;">${answers.caAnnuel?.toLocaleString("fr-FR") ?? "-"} EUR</td>
     </tr>
     <tr style="border-bottom:1px solid #E8E6E1;">
-      <td style="color:#666;">Heures prospection / semaine</td>
-      <td align="right" style="font-weight:bold;color:#1B2A4A;">${answers.heuresProspection}h</td>
+      <td style="color:#666;">Heures conformite / semaine</td>
+      <td align="right" style="font-weight:bold;color:#1B2A4A;">${answers.heuresConformite}h</td>
     </tr>
     <tr style="border-bottom:1px solid #E8E6E1;">
       <td style="color:#666;">Heures suivi client / semaine</td>
       <td align="right" style="font-weight:bold;color:#1B2A4A;">${answers.heuresSuivi}h</td>
     </tr>
     <tr style="border-bottom:1px solid #E8E6E1;">
-      <td style="color:#666;">Taux horaire effectif</td>
-      <td align="right" style="font-weight:bold;color:#1B2A4A;">${answers.tauxHoraire} EUR/h</td>
+      <td style="color:#666;">Heures prospection / semaine</td>
+      <td align="right" style="font-weight:bold;color:#1B2A4A;">${answers.heuresProspection}h</td>
+    </tr>
+    <tr style="border-bottom:1px solid #E8E6E1;">
+      <td style="color:#666;">Cout d'opportunite / heure</td>
+      <td align="right" style="font-weight:bold;color:#1B2A4A;">${results.coutOpportuniteHeure} EUR/h</td>
+    </tr>
+    <tr style="border-bottom:1px solid #E8E6E1;">
+      <td style="color:#666;">Panier moyen / client</td>
+      <td align="right" style="font-weight:bold;color:#1B2A4A;">${results.panierMoyen?.toLocaleString("fr-FR") ?? "-"} EUR</td>
     </tr>
     <tr>
       <td style="color:#666;">CRM en place</td>
@@ -78,9 +86,10 @@ export async function POST(req: NextRequest) {
   <tr><td>
     <h3 style="margin:0 0 12px;color:#1B2A4A;font-size:16px;">Ce que vous pouvez recuperer</h3>
     <p style="margin:0;font-size:14px;color:#333;">
-      <strong style="color:#28A745;">${results.heuresLiberees}h liberees par semaine</strong> grace a l'automatisation des taches repetitives<br><br>
-      <strong style="color:#28A745;">+${results.clientsSupp} clients supplementaires</strong> que vous pourriez gerer avec ce temps recupere<br><br>
-      <strong style="color:#28A745;">+${results.revenuPotentiel.toLocaleString("fr-FR")} EUR de revenu potentiel</strong> par an
+      <strong style="color:#28A745;">${results.heuresLibereesSemaine}h liberees par semaine</strong> (taux d'automatisation : ${results.tauxAutomatisation}%)<br><br>
+      <strong style="color:#28A745;">+${results.clientsSupp} clients supplementaires</strong> a ${answers.heuresParClient}h/mois par client<br><br>
+      <strong style="color:#28A745;">+${results.revenuPotentiel?.toLocaleString("fr-FR") ?? "0"} EUR de revenu potentiel</strong> (panier moyen ${results.panierMoyen?.toLocaleString("fr-FR") ?? "-"} EUR)<br><br>
+      <strong style="color:#28A745;">${results.gainAutomatisation?.toLocaleString("fr-FR") ?? "0"} EUR</strong> de valeur d'automatisation annuelle
     </p>
   </td></tr>
   </table>
@@ -109,7 +118,7 @@ ${results.pasCrm ? `
 <!-- CTA -->
 <tr><td style="padding:0 40px 40px;" align="center">
   <p style="color:#666;font-size:14px;margin:0 0 20px;">
-    Vous voulez savoir comment recuperer ces ${results.heuresLiberees} heures par semaine concretement ?
+    Vous voulez savoir comment recuperer ces ${results.heuresLibereesSemaine} heures par semaine concretement ?
   </p>
   <a href="https://consultant-ia-cgp.vercel.app/#contact"
      style="display:inline-block;background:#1B2A4A;color:white;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:15px;">
@@ -135,7 +144,7 @@ ${results.pasCrm ? `
 
   try {
     await transporter.sendMail({
-      from: '"Ignace Consulting" <' + process.env.SMTP_USER + ">",
+      from: '"Ignace Consulting" <aserignace@gmail.com>',
       to: email,
       subject: `Votre diagnostic CGP : ${results.heuresPerduesAn.toLocaleString("fr-FR")}h et ${results.coutPerduAn.toLocaleString("fr-FR")} EUR perdus par an`,
       html,

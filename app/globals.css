@@ -3,8 +3,8 @@
 @theme inline {
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
-  --color-navy: #1B2A4A;
-  --color-navy-light: #243556;
+  --color-navy: #000000;
+  --color-navy-light: #1A1A1A;
   --color-gold: #C9A84C;
   --color-gold-light: #D4B86A;
   --color-charcoal: #2D2D2D;

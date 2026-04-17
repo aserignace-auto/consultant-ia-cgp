@@ -82,8 +82,8 @@ export default function Calculatrice() {
   const questions = [
     {
       key: "nbClients" as const,
-      label: "Combien de clients actifs gerez-vous ?",
-      subtitle: "Clients avec un mandat en cours ou un suivi regulier",
+      label: "Combien de clients actifs gérez-vous ?",
+      subtitle: "Clients avec un mandat en cours ou un suivi régulier",
       min: 5,
       max: 500,
       step: 5,
@@ -93,7 +93,7 @@ export default function Calculatrice() {
     {
       key: "caAnnuel" as const,
       label: "Quel est le chiffre d'affaires annuel de votre cabinet ?",
-      subtitle: "Honoraires, commissions, retrocessions — total brut annuel",
+      subtitle: "Honoraires, commissions, rétrocessions — total brut annuel",
       min: 30000,
       max: 1000000,
       step: 10000,
@@ -112,8 +112,8 @@ export default function Calculatrice() {
     },
     {
       key: "heuresConformite" as const,
-      label: "Combien d'heures par semaine passez-vous en conformite ?",
-      subtitle: "KYC, rapports d'adequation, DER, lettres de mission, LCB-FT",
+      label: "Combien d'heures par semaine passez-vous en conformité ?",
+      subtitle: "KYC, rapports d'adéquation, DER, lettres de mission, LCB-FT",
       min: 0,
       max: 30,
       step: 1,
@@ -122,7 +122,7 @@ export default function Calculatrice() {
     },
     {
       key: "heuresProspection" as const,
-      label: "Combien d'heures par semaine consacrez-vous a la prospection ?",
+      label: "Combien d'heures par semaine consacrez-vous à la prospection ?",
       subtitle: "Recherche de nouveaux clients, networking, relances prospects",
       min: 0,
       max: 20,
@@ -133,7 +133,7 @@ export default function Calculatrice() {
     {
       key: "heuresSuivi" as const,
       label: "Combien d'heures par semaine pour le suivi client ?",
-      subtitle: "Relances, mises a jour dossiers, reporting, preparation de rendez-vous",
+      subtitle: "Relances, mises à jour dossiers, reporting, préparation de rendez-vous",
       min: 0,
       max: 25,
       step: 1,
@@ -274,7 +274,7 @@ export default function Calculatrice() {
                   onClick={() => setQuestionIdx((i) => i - 1)}
                   className="px-6 py-3 rounded-lg border-2 border-[#1B2A4A]/15 text-[#1B2A4A] font-medium hover:border-[#1B2A4A]/30 transition-colors"
                 >
-                  Precedent
+                  Précédent
                 </button>
               )}
               <button
@@ -299,10 +299,10 @@ export default function Calculatrice() {
               Question {totalQuestions} sur {totalQuestions}
             </p>
             <h2 className="font-serif text-2xl md:text-3xl text-[#1B2A4A] mb-3">
-              Utilisez-vous un CRM pour gerer vos clients ?
+              Utilisez-vous un CRM pour gérer vos clients ?
             </h2>
             <p className="text-[#2D2D2D]/50 mb-10">
-              Un logiciel dedie (Harvest, O2S, Salesforce...) ou des tableurs Excel / Google Sheets
+              Un logiciel dédié (Harvest, O2S, Salesforce...) ou des tableurs Excel / Google Sheets
             </p>
 
             <div className="grid grid-cols-2 gap-4 mb-8">
@@ -340,7 +340,7 @@ export default function Calculatrice() {
               onClick={() => setQuestionIdx((i) => i - 1)}
               className="px-6 py-3 rounded-lg border-2 border-[#1B2A4A]/15 text-[#1B2A4A] font-medium hover:border-[#1B2A4A]/30 transition-colors"
             >
-              Precedent
+              Précédent
             </button>
           </div>
         )}
@@ -348,7 +348,7 @@ export default function Calculatrice() {
         {step === "email" && (
           <div>
             <div className="bg-[#F8F7F4] rounded-2xl p-8 border border-[#E8E6E1] mb-10">
-              <p className="text-[#C9A84C] text-sm font-medium mb-4">Apercu de vos resultats</p>
+              <p className="text-[#C9A84C] text-sm font-medium mb-4">Aperçu de vos résultats</p>
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <p className="text-3xl font-serif font-bold text-[#1B2A4A]">
@@ -360,7 +360,7 @@ export default function Calculatrice() {
                   <p className="text-3xl font-serif font-bold text-[#C9A84C]">
                     {results.coutPerduAn.toLocaleString("fr-FR")} €
                   </p>
-                  <p className="text-[#2D2D2D]/50 text-sm">de manque a gagner annuel</p>
+                  <p className="text-[#2D2D2D]/50 text-sm">de manque à gagner annuel</p>
                 </div>
               </div>
             </div>
@@ -369,8 +369,8 @@ export default function Calculatrice() {
               Recevez votre diagnostic complet par email
             </h2>
             <p className="text-[#2D2D2D]/50 mb-8">
-              Analyse detaillee de votre situation, recommandations personnalisees,
-              et plan d&apos;action concret pour recuperer ces heures.
+              Analyse détaillée de votre situation, recommandations personnalisées,
+              et plan d&apos;action concret pour récupérer ces heures.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -391,7 +391,7 @@ export default function Calculatrice() {
             </div>
             {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
             <p className="text-[#2D2D2D]/30 text-xs mt-4">
-              Vos donnees sont confidentielles et ne seront jamais partagees. Conforme RGPD.
+              Vos données sont confidentielles et ne seront jamais partagées. Conforme RGPD.
             </p>
           </div>
         )}
@@ -399,7 +399,7 @@ export default function Calculatrice() {
         {step === "sending" && (
           <div className="text-center py-20">
             <div className="w-12 h-12 border-4 border-[#E8E6E1] border-t-[#1B2A4A] rounded-full animate-spin mx-auto mb-6" />
-            <p className="text-[#1B2A4A] font-serif text-xl">Preparation de votre diagnostic...</p>
+            <p className="text-[#1B2A4A] font-serif text-xl">Préparation de votre diagnostic...</p>
           </div>
         )}
 
@@ -412,12 +412,12 @@ export default function Calculatrice() {
               Votre diagnostic complet
             </h2>
             <p className="text-[#2D2D2D]/60 mb-8 max-w-md mx-auto">
-              Voici l&apos;analyse detaillee de votre situation basee sur vos chiffres reels.
+              Voici l&apos;analyse détaillée de votre situation basée sur vos chiffres réels.
             </p>
 
             <div className="bg-[#F8F7F4] rounded-2xl p-8 border border-[#E8E6E1] mb-6 text-left max-w-lg mx-auto">
               <h3 className="font-semibold text-[#1B2A4A] mb-1">Votre situation actuelle</h3>
-              <p className="text-[#2D2D2D]/40 text-xs mb-4">Base sur un CA de {answers.caAnnuel.toLocaleString("fr-FR")} EUR et {answers.nbClients} clients</p>
+              <p className="text-[#2D2D2D]/40 text-xs mb-4">Basé sur un CA de {answers.caAnnuel.toLocaleString("fr-FR")} EUR et {answers.nbClients} clients</p>
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-[#2D2D2D]/60">Heures admin / semaine</span>
@@ -428,33 +428,33 @@ export default function Calculatrice() {
                   <span className="font-semibold text-[#1B2A4A]">{results.heuresPerduesAn.toLocaleString("fr-FR")}h</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#2D2D2D]/60">Cout d&apos;opportunite / heure</span>
+                  <span className="text-[#2D2D2D]/60">Coût d&apos;opportunite / heure</span>
                   <span className="font-semibold text-[#1B2A4A]">{results.coutOpportuniteHeure} EUR/h</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#2D2D2D]/60">Manque a gagner annuel</span>
+                  <span className="text-[#2D2D2D]/60">Manque à gagner annuel</span>
                   <span className="font-semibold text-[#C9A84C] text-lg">{results.coutPerduAn.toLocaleString("fr-FR")} €</span>
                 </div>
               </div>
             </div>
 
             <div className="bg-[#F0F7F0] rounded-2xl p-8 border border-green-200 mb-6 text-left max-w-lg mx-auto">
-              <h3 className="font-semibold text-[#1B2A4A] mb-1">Ce que vous pouvez recuperer</h3>
+              <h3 className="font-semibold text-[#1B2A4A] mb-1">Ce que vous pouvez récupérer</h3>
               <p className="text-[#2D2D2D]/40 text-xs mb-4">Taux d&apos;automatisation estime : {results.tauxAutomatisation}% {answers.utiliseCrm ? '(avec CRM existant)' : '(sans CRM en place)'}</p>
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-[#2D2D2D]/60">Heures liberees / semaine</span>
+                  <span className="text-[#2D2D2D]/60">Heures libérées / semaine</span>
                   <span className="font-semibold text-green-600">{results.heuresLibereesSemaine}h</span>
                 </div>
                 <div className="flex justify-between items-start">
-                  <span className="text-[#2D2D2D]/60">Clients supplementaires possibles</span>
+                  <span className="text-[#2D2D2D]/60">Clients supplémentaires possibles</span>
                   <div className="text-right">
                     <span className="font-semibold text-green-600">+{results.clientsSupp}</span>
                     <p className="text-[#2D2D2D]/40 text-xs">a {answers.heuresParClient}h/mois par client</p>
                   </div>
                 </div>
                 <div className="flex justify-between items-start">
-                  <span className="text-[#2D2D2D]/60">Revenu potentiel supplementaire</span>
+                  <span className="text-[#2D2D2D]/60">Revenu potentiel supplémentaire</span>
                   <div className="text-right">
                     <span className="font-semibold text-green-600 text-lg">+{results.revenuPotentiel.toLocaleString("fr-FR")} €/an</span>
                     <p className="text-[#2D2D2D]/40 text-xs">panier moyen {results.panierMoyen.toLocaleString("fr-FR")} EUR/client</p>
@@ -479,7 +479,7 @@ export default function Calculatrice() {
                   )}
                   {results.pasCrm && (
                     <p className="text-[#2D2D2D]/70">
-                      <strong className="text-orange-600">Pas de CRM :</strong> Sans CRM, vous perdez en moyenne 3 a 5 heures supplementaires par semaine en recherche d&apos;information et double saisie. C&apos;est souvent la premiere automatisation a mettre en place.
+                      <strong className="text-orange-600">Pas de CRM :</strong> Sans CRM, vous perdez en moyenne 3 a 5 heures supplémentaires par semaine en recherche d&apos;information et double saisie. C&apos;est souvent la première automatisation à mettre en place.
                     </p>
                   )}
                 </div>
@@ -490,7 +490,7 @@ export default function Calculatrice() {
               href="/#contact"
               className="inline-flex items-center justify-center bg-[#1B2A4A] text-white px-8 py-4 rounded-lg font-medium hover:bg-[#243556] transition-colors"
             >
-              Echanger sur vos resultats — 30 min gratuites
+              Échanger sur vos résultats — 30 min gratuites
             </a>
           </div>
         )}

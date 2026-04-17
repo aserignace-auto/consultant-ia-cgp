@@ -488,9 +488,9 @@ export default function Calculatrice() {
 
             <a
               href="/#contact"
-              className="inline-flex items-center justify-center bg-[#1B2A4A] text-white px-8 py-4 rounded-lg font-medium hover:bg-[#243556] transition-colors"
+              className="inline-flex items-center justify-center bg-[#C9A84C] text-[#000] px-10 py-5 rounded-lg text-lg font-bold hover:bg-[#D4B86A] transition-colors"
             >
-              Échanger sur vos résultats — 30 min gratuites
+              Je veux économiser du temps !
             </a>
           </div>
         )}

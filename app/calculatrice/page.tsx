@@ -12,30 +12,54 @@ type Step = "questions" | "email" | "sending" | "done";
 
 interface Answers {
   nbClients: number;
+  caAnnuel: number;
+  nbConseillers: number;
   heuresConformite: number;
   heuresProspection: number;
   heuresSuivi: number;
-  tauxHoraire: number;
+  heuresParClient: number;
   utiliseCrm: boolean;
 }
 
 function calcResults(a: Answers) {
   const heuresAdminSemaine = a.heuresConformite + a.heuresSuivi;
   const heuresPerduesAn = heuresAdminSemaine * 46;
-  const coutPerduAn = heuresPerduesAn * a.tauxHoraire;
-  const heuresLiberees = Math.round(heuresAdminSemaine * 0.65);
-  const clientsSupp = Math.round((heuresLiberees * 46) / 25);
-  const revenuPotentiel = clientsSupp * a.tauxHoraire * 20;
+
+  const heuresTravailAn = 46 * 40;
+  const heuresFacturablesAn = heuresTravailAn - heuresPerduesAn;
+  const coutOpportuniteHeure =
+    heuresFacturablesAn > 0 ? a.caAnnuel / heuresFacturablesAn : 0;
+  const coutPerduAn = Math.round(heuresPerduesAn * coutOpportuniteHeure);
+
+  const tauxAutomatisation = a.utiliseCrm ? 0.30 : 0.45;
+  const heuresLibereesSemaine = Math.round(heuresAdminSemaine * tauxAutomatisation);
+  const heuresLibereesMois = heuresLibereesSemaine * 4;
+
+  const tempsParClientMois = a.heuresParClient > 0 ? a.heuresParClient : 2;
+  const clientsSupp = Math.round(heuresLibereesMois / tempsParClientMois);
+
+  const panierMoyen =
+    a.nbClients > 0 ? Math.round(a.caAnnuel / a.nbClients) : 0;
+  const revenuPotentiel = clientsSupp * panierMoyen;
+
+  const gainAutomatisation = Math.round(
+    heuresLibereesSemaine * 46 * coutOpportuniteHeure
+  );
 
   return {
     heuresAdminSemaine,
     heuresPerduesAn,
+    coutOpportuniteHeure: Math.round(coutOpportuniteHeure),
     coutPerduAn,
-    heuresLiberees,
+    tauxAutomatisation: Math.round(tauxAutomatisation * 100),
+    heuresLibereesSemaine,
     clientsSupp,
+    panierMoyen,
     revenuPotentiel,
+    gainAutomatisation,
     prospectionFaible: a.heuresProspection < 5,
     pasCrm: !a.utiliseCrm,
+    ratioAdmin: Math.round((heuresAdminSemaine / 40) * 100),
   };
 }
 
@@ -44,10 +68,12 @@ export default function Calculatrice() {
   const [questionIdx, setQuestionIdx] = useState(0);
   const [answers, setAnswers] = useState<Answers>({
     nbClients: 30,
+    caAnnuel: 150000,
+    nbConseillers: 1,
     heuresConformite: 8,
     heuresProspection: 3,
     heuresSuivi: 6,
-    tauxHoraire: 80,
+    heuresParClient: 2,
     utiliseCrm: false,
   });
   const [email, setEmail] = useState("");
@@ -58,10 +84,31 @@ export default function Calculatrice() {
       key: "nbClients" as const,
       label: "Combien de clients actifs gerez-vous ?",
       subtitle: "Clients avec un mandat en cours ou un suivi regulier",
-      min: 1,
+      min: 5,
       max: 500,
       step: 5,
       unit: "clients",
+      format: (v: number) => `${v}`,
+    },
+    {
+      key: "caAnnuel" as const,
+      label: "Quel est le chiffre d'affaires annuel de votre cabinet ?",
+      subtitle: "Honoraires, commissions, retrocessions — total brut annuel",
+      min: 30000,
+      max: 1000000,
+      step: 10000,
+      unit: "EUR/an",
+      format: (v: number) => v.toLocaleString("fr-FR"),
+    },
+    {
+      key: "nbConseillers" as const,
+      label: "Combien de conseillers dans votre cabinet ?",
+      subtitle: "Vous compris. 1 si vous etes independant",
+      min: 1,
+      max: 10,
+      step: 1,
+      unit: "conseillers",
+      format: (v: number) => `${v}`,
     },
     {
       key: "heuresConformite" as const,
@@ -71,6 +118,7 @@ export default function Calculatrice() {
       max: 30,
       step: 1,
       unit: "heures/semaine",
+      format: (v: number) => `${v}`,
     },
     {
       key: "heuresProspection" as const,
@@ -80,26 +128,31 @@ export default function Calculatrice() {
       max: 20,
       step: 1,
       unit: "heures/semaine",
+      format: (v: number) => `${v}`,
     },
     {
       key: "heuresSuivi" as const,
       label: "Combien d'heures par semaine pour le suivi client ?",
-      subtitle: "Relances, bilans patrimoniaux, mise a jour des dossiers, reporting",
+      subtitle: "Relances, mises a jour dossiers, reporting, preparation de rendez-vous",
       min: 0,
       max: 25,
       step: 1,
       unit: "heures/semaine",
+      format: (v: number) => `${v}`,
     },
     {
-      key: "tauxHoraire" as const,
-      label: "Quel est votre taux horaire effectif ?",
-      subtitle: "Revenus annuels divises par heures facturables",
-      min: 30,
-      max: 300,
-      step: 10,
-      unit: "EUR/heure",
+      key: "heuresParClient" as const,
+      label: "Combien d'heures par mois consacrez-vous en moyenne par client ?",
+      subtitle: "Tout compris : rendez-vous, suivi, bilans, rebalancing, reporting, appels",
+      min: 1,
+      max: 10,
+      step: 0.5,
+      unit: "heures/mois/client",
+      format: (v: number) => `${v}`,
     },
   ];
+
+  const totalQuestions = questions.length + 1;
 
   const handleSlider = (key: keyof Answers, value: number) => {
     setAnswers((prev) => ({ ...prev, [key]: value }));
@@ -126,7 +179,7 @@ export default function Calculatrice() {
         heures_conformite: answers.heuresConformite,
         heures_prospection: answers.heuresProspection,
         heures_suivi: answers.heuresSuivi,
-        taux_horaire: answers.tauxHoraire,
+        taux_horaire: results.coutOpportuniteHeure,
         utilise_crm: answers.utiliseCrm,
         heures_perdues_an: results.heuresPerduesAn,
         cout_perdu_an: results.coutPerduAn,
@@ -152,7 +205,7 @@ export default function Calculatrice() {
   const results = calcResults(answers);
   const progress =
     step === "questions"
-      ? ((questionIdx + 1) / (questions.length + 1)) * 100
+      ? ((questionIdx + 1) / totalQuestions) * 100
       : step === "email"
         ? 95
         : 100;
@@ -184,7 +237,7 @@ export default function Calculatrice() {
         {step === "questions" && questionIdx < questions.length && (
           <div className="animate-in">
             <p className="text-[#C9A84C] text-sm font-medium mb-4">
-              Question {questionIdx + 1} sur {questions.length + 1}
+              Question {questionIdx + 1} sur {totalQuestions}
             </p>
             <h2 className="font-serif text-2xl md:text-3xl text-[#1B2A4A] mb-3">
               {questions[questionIdx].label}
@@ -194,7 +247,7 @@ export default function Calculatrice() {
             <div className="mb-8">
               <div className="flex justify-between items-end mb-4">
                 <span className="text-5xl font-serif font-bold text-[#1B2A4A]">
-                  {answers[questions[questionIdx].key] as number}
+                  {questions[questionIdx].format(answers[questions[questionIdx].key] as number)}
                 </span>
                 <span className="text-[#2D2D2D]/40 text-sm">{questions[questionIdx].unit}</span>
               </div>
@@ -210,8 +263,8 @@ export default function Calculatrice() {
                 className="w-full h-2 bg-[#E8E6E1] rounded-lg appearance-none cursor-pointer accent-[#1B2A4A]"
               />
               <div className="flex justify-between text-xs text-[#2D2D2D]/30 mt-2">
-                <span>{questions[questionIdx].min}</span>
-                <span>{questions[questionIdx].max}</span>
+                <span>{questions[questionIdx].format(questions[questionIdx].min)}</span>
+                <span>{questions[questionIdx].format(questions[questionIdx].max)}</span>
               </div>
             </div>
 
@@ -243,7 +296,7 @@ export default function Calculatrice() {
         {step === "questions" && questionIdx >= questions.length && (
           <div>
             <p className="text-[#C9A84C] text-sm font-medium mb-4">
-              Question {questions.length + 1} sur {questions.length + 1}
+              Question {totalQuestions} sur {totalQuestions}
             </p>
             <h2 className="font-serif text-2xl md:text-3xl text-[#1B2A4A] mb-3">
               Utilisez-vous un CRM pour gerer vos clients ?
@@ -295,7 +348,7 @@ export default function Calculatrice() {
         {step === "email" && (
           <div>
             <div className="bg-[#F8F7F4] rounded-2xl p-8 border border-[#E8E6E1] mb-10">
-              <p className="text-[#C9A84C] text-sm font-medium mb-2">Apercu de vos resultats</p>
+              <p className="text-[#C9A84C] text-sm font-medium mb-4">Apercu de vos resultats</p>
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <p className="text-3xl font-serif font-bold text-[#1B2A4A]">
@@ -359,40 +412,79 @@ export default function Calculatrice() {
               Votre diagnostic complet
             </h2>
             <p className="text-[#2D2D2D]/60 mb-8 max-w-md mx-auto">
-              Voici l&apos;analyse detaillee de votre situation.
-              Un email de confirmation vous a egalement ete envoye.
+              Voici l&apos;analyse detaillee de votre situation basee sur vos chiffres reels.
             </p>
 
-            <div className="bg-[#F8F7F4] rounded-2xl p-8 border border-[#E8E6E1] mb-8 text-left max-w-lg mx-auto">
-              <h3 className="font-semibold text-[#1B2A4A] mb-4">Votre situation en un coup d&apos;oeil</h3>
+            <div className="bg-[#F8F7F4] rounded-2xl p-8 border border-[#E8E6E1] mb-6 text-left max-w-lg mx-auto">
+              <h3 className="font-semibold text-[#1B2A4A] mb-1">Votre situation actuelle</h3>
+              <p className="text-[#2D2D2D]/40 text-xs mb-4">Base sur un CA de {answers.caAnnuel.toLocaleString("fr-FR")} EUR et {answers.nbClients} clients</p>
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-[#2D2D2D]/60">Heures admin / semaine</span>
-                  <span className="font-semibold text-[#1B2A4A]">{results.heuresAdminSemaine}h</span>
+                  <span className="font-semibold text-[#1B2A4A]">{results.heuresAdminSemaine}h <span className="text-[#2D2D2D]/40 font-normal text-xs">({results.ratioAdmin}% de votre temps)</span></span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#2D2D2D]/60">Heures perdues / an</span>
                   <span className="font-semibold text-[#1B2A4A]">{results.heuresPerduesAn.toLocaleString("fr-FR")}h</span>
                 </div>
                 <div className="flex justify-between">
+                  <span className="text-[#2D2D2D]/60">Cout d&apos;opportunite / heure</span>
+                  <span className="font-semibold text-[#1B2A4A]">{results.coutOpportuniteHeure} EUR/h</span>
+                </div>
+                <div className="flex justify-between">
                   <span className="text-[#2D2D2D]/60">Manque a gagner annuel</span>
-                  <span className="font-semibold text-[#C9A84C]">{results.coutPerduAn.toLocaleString("fr-FR")} €</span>
-                </div>
-                <hr className="border-[#E8E6E1]" />
-                <div className="flex justify-between">
-                  <span className="text-[#2D2D2D]/60">Heures recuperables / semaine</span>
-                  <span className="font-semibold text-green-600">{results.heuresLiberees}h</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[#2D2D2D]/60">Clients supplementaires possibles</span>
-                  <span className="font-semibold text-green-600">+{results.clientsSupp}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[#2D2D2D]/60">Revenu potentiel supplementaire</span>
-                  <span className="font-semibold text-green-600">+{results.revenuPotentiel.toLocaleString("fr-FR")} €/an</span>
+                  <span className="font-semibold text-[#C9A84C] text-lg">{results.coutPerduAn.toLocaleString("fr-FR")} €</span>
                 </div>
               </div>
             </div>
+
+            <div className="bg-[#F0F7F0] rounded-2xl p-8 border border-green-200 mb-6 text-left max-w-lg mx-auto">
+              <h3 className="font-semibold text-[#1B2A4A] mb-1">Ce que vous pouvez recuperer</h3>
+              <p className="text-[#2D2D2D]/40 text-xs mb-4">Taux d&apos;automatisation estime : {results.tauxAutomatisation}% {answers.utiliseCrm ? '(avec CRM existant)' : '(sans CRM en place)'}</p>
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <span className="text-[#2D2D2D]/60">Heures liberees / semaine</span>
+                  <span className="font-semibold text-green-600">{results.heuresLibereesSemaine}h</span>
+                </div>
+                <div className="flex justify-between items-start">
+                  <span className="text-[#2D2D2D]/60">Clients supplementaires possibles</span>
+                  <div className="text-right">
+                    <span className="font-semibold text-green-600">+{results.clientsSupp}</span>
+                    <p className="text-[#2D2D2D]/40 text-xs">a {answers.heuresParClient}h/mois par client</p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-start">
+                  <span className="text-[#2D2D2D]/60">Revenu potentiel supplementaire</span>
+                  <div className="text-right">
+                    <span className="font-semibold text-green-600 text-lg">+{results.revenuPotentiel.toLocaleString("fr-FR")} €/an</span>
+                    <p className="text-[#2D2D2D]/40 text-xs">panier moyen {results.panierMoyen.toLocaleString("fr-FR")} EUR/client</p>
+                  </div>
+                </div>
+                <hr className="border-green-200" />
+                <div className="flex justify-between">
+                  <span className="text-[#2D2D2D]/60">Valeur de l&apos;automatisation</span>
+                  <span className="font-semibold text-green-700 text-lg">{results.gainAutomatisation.toLocaleString("fr-FR")} €/an</span>
+                </div>
+              </div>
+            </div>
+
+            {(results.prospectionFaible || results.pasCrm) && (
+              <div className="bg-[#FFF8F0] rounded-2xl p-8 border border-orange-200 mb-6 text-left max-w-lg mx-auto">
+                <h3 className="font-semibold text-[#1B2A4A] mb-4">Points d&apos;attention</h3>
+                <div className="space-y-3 text-sm">
+                  {results.prospectionFaible && (
+                    <p className="text-[#2D2D2D]/70">
+                      <strong className="text-orange-600">Prospection insuffisante :</strong> Vous consacrez moins de 5h/semaine a la prospection. 76% des CGP sont dans cette situation. L&apos;automatisation de la prospection est souvent le levier le plus rentable.
+                    </p>
+                  )}
+                  {results.pasCrm && (
+                    <p className="text-[#2D2D2D]/70">
+                      <strong className="text-orange-600">Pas de CRM :</strong> Sans CRM, vous perdez en moyenne 3 a 5 heures supplementaires par semaine en recherche d&apos;information et double saisie. C&apos;est souvent la premiere automatisation a mettre en place.
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
 
             <a
               href="/#contact"

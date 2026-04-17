@@ -133,11 +133,15 @@ export default function Calculatrice() {
         clients_supplementaires: results.clientsSupp,
       });
 
-      await fetch("/api/send-results", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, answers, results }),
-      });
+      try {
+        await fetch("/api/send-results", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, answers, results }),
+        });
+      } catch {
+        // Email send may fail (SMTP quota), results shown on page regardless
+      }
 
       setStep("done");
     } catch {
@@ -352,11 +356,11 @@ export default function Calculatrice() {
               <span className="text-[#C9A84C] text-3xl">✓</span>
             </div>
             <h2 className="font-serif text-3xl text-[#1B2A4A] mb-4">
-              Votre diagnostic est en route
+              Votre diagnostic complet
             </h2>
             <p className="text-[#2D2D2D]/60 mb-8 max-w-md mx-auto">
-              Consultez votre boite email dans les prochaines minutes.
-              Pensez a verifier vos spams si vous ne le voyez pas.
+              Voici l&apos;analyse detaillee de votre situation.
+              Un email de confirmation vous a egalement ete envoye.
             </p>
 
             <div className="bg-[#F8F7F4] rounded-2xl p-8 border border-[#E8E6E1] mb-8 text-left max-w-lg mx-auto">

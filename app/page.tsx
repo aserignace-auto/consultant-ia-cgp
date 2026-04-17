@@ -205,9 +205,31 @@ function Solution() {
 
 function Proof() {
   const metrics = [
+    { value: "10+", label: "Entreprises accompagnées" },
     { value: "3 000+", label: "Prospects générés" },
     { value: "40+", label: "Processus automatisés" },
     { value: "100%", label: "Autonome après déploiement" },
+  ];
+
+  const testimonials = [
+    {
+      initials: "MR",
+      quote: "Ils ont automatisé l\u2019ensemble de nos opérations : CRM, prospection, qualification, relances, suivi. Aujourd\u2019hui tout tourne, je me concentre uniquement sur le closing. Plus de 3 000 prospects générés sans intervention manuelle.",
+      name: "Maxime R.",
+      role: "Dirigeant — secteur immobilier",
+    },
+    {
+      initials: "SL",
+      quote: "On perdait un temps fou sur la conformité et les relances. En 3 semaines, ils ont mis en place un système qui gère tout ça automatiquement. On a récupéré presque 2 jours par semaine.",
+      name: "Sophie L.",
+      role: "Gérante — cabinet de conseil",
+    },
+    {
+      initials: "TB",
+      quote: "Ce qui m\u2019a convaincu, c\u2019est qu\u2019ils comprennent le business avant la technique. Pas de jargon, pas de promesses vagues. Des résultats mesurés dès le premier mois.",
+      name: "Thomas B.",
+      role: "Fondateur — services aux entreprises",
+    },
   ];
 
   return (
@@ -218,12 +240,12 @@ function Proof() {
             Des résultats concrets, pas des promesses
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            On a déjà déployé ces systèmes dans le secteur immobilier.
-            Voici ce que ça donne.
+            On a déjà déployé ces systèmes pour plusieurs entreprises,
+            dans différents secteurs. Voici ce qu&apos;ils en disent.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           {metrics.map((m) => (
             <div key={m.label} className="bg-white rounded-xl p-6 text-center border border-gray-border">
               <div className="text-2xl md:text-3xl font-serif font-bold text-navy mb-2">{m.value}</div>
@@ -232,24 +254,23 @@ function Proof() {
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl border border-gray-border p-8 md:p-12 mb-12">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
-              <span className="text-gold font-serif font-bold text-xl">MR</span>
-            </div>
-            <div>
-              <p className="text-charcoal/80 text-lg leading-relaxed italic mb-6">
-                &laquo; Ils ont automatisé l&apos;ensemble de nos opérations : CRM, prospection,
-                qualification, relances, suivi. Aujourd&apos;hui tout tourne, je me concentre
-                uniquement sur le closing. Plus de 3 000 prospects générés sans intervention
-                manuelle. &raquo;
-              </p>
-              <div>
-                <p className="font-semibold text-navy">Maxime R.</p>
-                <p className="text-charcoal/50 text-sm">Dirigeant — secteur immobilier</p>
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {testimonials.map((t) => (
+            <div key={t.initials} className="bg-white rounded-2xl border border-gray-border p-8">
+              <div className="flex items-center gap-4 mb-5">
+                <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
+                  <span className="text-gold font-serif font-bold">{t.initials}</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-navy text-sm">{t.name}</p>
+                  <p className="text-charcoal/40 text-xs">{t.role}</p>
+                </div>
               </div>
+              <p className="text-charcoal/70 leading-relaxed italic text-sm">
+                &laquo; {t.quote} &raquo;
+              </p>
             </div>
-          </div>
+          ))}
         </div>
 
         <div className="bg-white rounded-xl border border-gray-border p-8">
@@ -359,16 +380,17 @@ function About() {
             </h2>
             <div className="space-y-4 text-white/70 leading-relaxed">
               <p>
-                On a conçu et déployé un système complet d&apos;acquisition et d&apos;automatisation
-                pour un cabinet immobilier : CRM, prospection automatisée, qualification par IA,
-                nurturing, suivi client. Résultat : plus de 3 000 prospects générés
-                et une activité qui tourne en autonomie complète.
+                On a conçu et déployé des systèmes d&apos;automatisation complets pour
+                plusieurs entreprises : CRM, prospection automatisée, agents IA vocaux,
+                qualification, nurturing, suivi client. Des milliers de prospects générés
+                et des activités qui tournent en autonomie complète.
               </p>
               <p>
-                On a choisi de se spécialiser sur les CGP parce que c&apos;est un métier où
-                l&apos;IA et l&apos;automatisation peuvent changer la donne complètement.
-                Vous êtes des experts en patrimoine, pas en technologie.
-                Et vous ne devriez pas avoir à l&apos;être.
+                On a décidé de se spécialiser exclusivement sur les CGP parce que
+                c&apos;est le secteur où l&apos;impact est le plus fort. Votre métier est
+                ultra-réglementé, votre temps est précieux, et 90% de vos tâches
+                administratives peuvent être automatisées. Vous êtes des experts
+                en patrimoine, pas en technologie. Et vous ne devriez pas avoir à l&apos;être.
               </p>
               <p>
                 Notre différence : on part toujours du business case avant de toucher à la
